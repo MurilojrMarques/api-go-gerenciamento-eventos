@@ -8,7 +8,7 @@ import (
 	"api-go-gerenciamento-eventos/internal/env"
 
 	_ "github.com/joho/godotenv/autoload"
-	_ "github.com/mattn/go-sqlite3"
+	_ "modernc.org/sqlite"
 )
 
 type application struct {
@@ -18,9 +18,9 @@ type application struct {
 }
 
 func main() {
-	db, err := sql.Open("sqlite3", "./data.db")
+	db, err := sql.Open("sqlite", "./data.db")
 	if err != nil {
-		log.Fatal("err")
+		log.Fatal(err)
 	}
 
 	defer db.Close()
